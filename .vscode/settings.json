@@ -1,5 +1,10 @@
 {
   "deno.enable": true,
   "deno.lint": true,
-  "editor.defaultFormatter": "denoland.vscode-deno"
+  "editor.defaultFormatter": "denoland.vscode-deno",
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass"
+  ]
 }

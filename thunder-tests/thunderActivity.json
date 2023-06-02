@@ -1,0 +1,58 @@
+[
+  {
+    "_id": "28fe9865-3ddc-4308-8d66-559b18c78cd5",
+    "colId": "history",
+    "containerId": "",
+    "name": "列表",
+    "url": "http://www.cbirc.gov.cn/cn/static/data/DocInfo/SelectDocByItemIdAndChild/data_itemId=4113,pageIndex=1,pageSize=18.json",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-06-02T13:35:17.493Z",
+    "modified": "2023-06-02T13:39:15.830Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "f8f3a998-3768-41a7-8dac-3907149f2d8d",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://www.cbirc.gov.cn/cn/view/pages/ItemDetail.html?docId=1110026&itemId=4113&generaltype=9",
+    "url": "http://www.cbirc.gov.cn/cn/view/pages/ItemDetail.html?docId=1110026&itemId=4113&generaltype=9",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-06-02T13:54:26.387Z",
+    "modified": "2023-06-02T13:58:37.510Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "docId",
+        "value": "1110026",
+        "isPath": false
+      },
+      {
+        "name": "itemId",
+        "value": "4113",
+        "isPath": false
+      },
+      {
+        "name": "generaltype",
+        "value": "9",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "967ceab2-8fe6-4ceb-9df4-2a1047242bd4",
+    "colId": "history",
+    "containerId": "",
+    "name": "detail",
+    "url": "http://www.cbirc.gov.cn/cn/static/data/DocInfo/SelectByDocId/data_docId=1075770.json",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-06-02T13:58:49.507Z",
+    "modified": "2023-06-02T13:58:49.507Z",
+    "headers": []
+  }
+]
