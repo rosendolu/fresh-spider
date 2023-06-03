@@ -1,5 +1,16 @@
 window.addEventListener("load", () => {
-  toggleDetail();
+  // toggleDetail();
+  const detailsElement = document.querySelectorAll("#details");
+  for (const el of detailsElement) {
+    el.addEventListener("toggle", () => {
+      if (el.open) {
+        const content = el.innerText;
+        el.innerHTML = content;
+      }
+    });
+  }
+
+  //
   const openBtn = document.querySelector("#openDetail");
   openBtn.addEventListener("click", () => {
     const detailsElements = document.querySelectorAll("#details");
@@ -8,15 +19,3 @@ window.addEventListener("load", () => {
     }
   });
 });
-
-function toggleDetail() {
-  const detailsElement = document.querySelectorAll("#details");
-  for (const el of detailsElement) {
-    el.open = true;
-    setTimeout(() => {
-      const content = el.innerText;
-      el.innerHTML = content;
-      el.open = false;
-    }, 0);
-  }
-}

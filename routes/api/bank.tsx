@@ -157,7 +157,7 @@ export default function Index(props: PageProps) {
                       </td>
                       <td class="border border-slate-300 p-1 text-sm w-[600px] overflow-auto">
                         <details id={"details"}>
-                          <summary>{item.docSubtitle}</summary>
+                          {/* <summary>{item.docSubtitle}</summary> */}
                           <div
                             class="text-sm font-norm"
                             id={"richText"}
