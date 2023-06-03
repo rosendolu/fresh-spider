@@ -54,5 +54,45 @@
     "created": "2023-06-02T13:58:49.507Z",
     "modified": "2023-06-02T13:58:49.507Z",
     "headers": []
+  },
+  {
+    "_id": "a9cfc205-5005-4996-90f9-ab3bb223d496",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:8000/api/bank?text=214234&count=50&total=1&province=1&branch=1",
+    "url": "http://localhost:8000/api/bank?text=214234&count=10&total=0&province=0&branch=1",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-06-03T09:13:25.786Z",
+    "modified": "2023-06-03T09:20:35.671Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "text",
+        "value": "214234",
+        "isPath": false
+      },
+      {
+        "name": "count",
+        "value": "10",
+        "isPath": false
+      },
+      {
+        "name": "total",
+        "value": "0",
+        "isPath": false
+      },
+      {
+        "name": "province",
+        "value": "0",
+        "isPath": false
+      },
+      {
+        "name": "branch",
+        "value": "1",
+        "isPath": false
+      }
+    ],
+    "tests": []
   }
 ]

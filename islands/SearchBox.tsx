@@ -4,9 +4,16 @@ export default function SearchBox(props: any) {
   const [state, dispatch] = useReducer(
     (state, action) => {
       const { type, value } = action;
+      if (type == "text") {
+        return { ...state, text: value };
+      }
+      if (type == "count") {
+        return { ...state, count: value };
+      }
       return { ...state, [type]: { ...state[type], state: value } };
     },
     {
+      count: 50,
       text: "",
       total: {
         state: 1,
@@ -36,6 +43,17 @@ export default function SearchBox(props: any) {
             value={state["text"]}
             onChange={(e) => dispatch({ type: "text", value: e.target.value })}
           />
+
+          <input
+            class="hover:shadow-sm p-1 border font-normal  ml-4"
+            type="number"
+            max={200}
+            min={10}
+            name="count"
+            value={state["count"]}
+            onChange={(e) => dispatch({ type: "count", value: e.target.value })}
+          />
+          <label htmlFor="count" class="p-1">检索数量</label>
           {checkList.map((key) => {
             return (
               <div key={key} class="flex justify-center items-center">
