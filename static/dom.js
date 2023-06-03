@@ -10,12 +10,13 @@ window.addEventListener("load", () => {
     });
   }
 
-  //
+  let open = false;
   const openBtn = document.querySelector("#openDetail");
   openBtn.addEventListener("click", () => {
     const detailsElements = document.querySelectorAll("#details");
     for (const el of detailsElements) {
-      el.open = !el.open;
+      open = !open;
+      el.open = open;
     }
   });
 });
