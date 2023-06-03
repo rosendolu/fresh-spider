@@ -1,5 +1,6 @@
 import { asset } from "$fresh/runtime.ts";
 import { HandlerContext, Handlers, PageProps } from "$fresh/server.ts";
+
 const config = {
   total: {
     itemId: 4113,
@@ -92,6 +93,7 @@ export const handler: Handlers = {
 };
 
 export default function Index(props: PageProps) {
+  // const [open, setOpenState] = useState(false);
   const { data } = props;
   const list = ["total", "province", "branch"];
 
@@ -107,6 +109,24 @@ export default function Index(props: PageProps) {
   // const { total, province, branch } = data;
   return (
     <div class="p-4">
+      <div class="p-2 text-center">
+        {
+          /* <input
+          class="p-2 bg-blue-400 font-bold text-2xl hover:shadow-sm hover:outline-1 rounded-md"
+          type="radio"
+          name="openDetail"
+          id="openDetail"
+        />
+        <label htmlFor="openDetail">展开正文</label> */
+        }
+        <button
+          id="openDetail"
+          class="p-2 bg-blue-400 font-bold text-2xl hover:shadow-sm hover:outline-1 rounded-md" // onClick={() => setOpenState(!open)}
+        >
+          展开正文
+          {/* {open ? "" : "折叠正文"} */}
+        </button>
+      </div>
       {list.map((key) => {
         return (data[key] && data[key]?.length)
           ? (
