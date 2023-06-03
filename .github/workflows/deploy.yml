@@ -27,6 +27,6 @@ jobs:
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: "rosendolu-fresh-spider"
+          project: "zhoubin"
           entrypoint: "main.ts" # 📝 Update the entrypoint
           root: "."
