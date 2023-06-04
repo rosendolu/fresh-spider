@@ -1,12 +1,25 @@
 window.addEventListener("load", () => {
-  autoToggleDetails();
+  // autoToggleDetails();
+  const searchParams = new URLSearchParams(location.href.split("?")[1] || "");
   // toggleDetail();
   const detailsElement = document.querySelectorAll("#details");
   for (const el of detailsElement) {
     el.addEventListener("toggle", () => {
       if (el.open) {
+        const queryText = searchParams.get("text") || "";
         const content = el.innerText;
-        el.innerHTML = content;
+        const textArr = content.split(
+          new RegExp(`(${queryText})`, "i"),
+        );
+        const newContent = textArr.map((str) => {
+          if (str == queryText) {
+            return `<span style="background:yellow;font-size:16px;font-weight:bold;">${str}</span>`;
+          }
+          return `<span>${str}</span>`;
+        }).join("");
+        // new RegExp(`/(.{0,50})(${queryText})(.{0,50})/`),
+        // 高亮匹配的文本
+        el.innerHTML = newContent;
       }
     });
   }

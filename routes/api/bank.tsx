@@ -17,11 +17,13 @@ const config = {
 };
 export const handler: Handlers = {
   async GET(req: Request, ctx: HandlerContext) {
+    let { text, total, province, branch, count } = getQueryObj(req);
     const list = await getData(req);
     const ctxData = {
       total: list[0],
       province: list[1],
       branch: list[2],
+      count,
     };
     // return new Response(JSON.stringify(ctxData), {
     //   headers: { "Content-Type": "application/json" },
@@ -48,11 +50,12 @@ export default function Index(props: PageProps) {
   // const [open, setOpenState] = useState(false);
   const { data } = props;
   const list = ["total", "province", "branch"];
-
-  if (!data) {
+  const { count } = data;
+  if (!list.filter((key) => data[key].length).length) {
     return (
       <div>
-        <div class="text-4xl font-bold text-cente">结果为空</div>
+        <div class="p-2 text-2xl text-center">查询了{count}条数据</div>
+        <div class="text-4xl font-bold text-center">检索结果为空</div>
         {/* <code>{JSON.stringify(data, null, 2)}</code> */}
       </div>
     );
@@ -147,32 +150,18 @@ export default function Index(props: PageProps) {
 }
 
 async function getData(req) {
-  const urlObj = new URL(req.url);
-  const queryArr = [...urlObj.searchParams.entries()];
-  const query = queryArr.reduce(
-    (acc, [key, val]) => {
-      if (["total", "province", "branch", "count"].includes(key)) {
-        acc[key] = parseInt(val);
-      } else {
-        acc[key] = val;
-      }
-
-      return acc;
-    },
-    {},
-  );
-  let { text, total, province, branch, count } = query;
+  let { text, total, province, branch, count } = getQueryObj(req);
   const pageSize = 18, pageIndex = 1, requestCount = Math.min(count, 1000);
 
   // 貌似链接是会变动的
-  // const listURL = (itemId, pageIndex) =>
+  // const moreListURL = (itemId, pageIndex) =>
   //   `http://www.cbirc.gov.cn/cn/static/data/DocInfo/SelectDocByItemIdAndChild/data_itemId=${itemId},pageIndex=${pageIndex},pageSize=18.json`;
 
-  // 超过3 页的要用这个查
+  // // 超过3 页的要用这个查
   const moreListURL = (itemId, pageIndex) =>
     `http://www.cbirc.gov.cn/cbircweb/DocInfo/SelectDocByItemIdAndChild?itemId=${itemId}&pageSize=${pageSize}&pageIndex=${pageIndex}`;
 
-  // const listURL =
+  // const moreListURL =
   //   "http://www.cbirc.gov.cn/cbircweb/DocInfo/SelectDocByItemIdAndChild";
 
   let list = [["total", total], ["province", province], ["branch", branch]]
@@ -201,6 +190,7 @@ async function getData(req) {
     );
 
   list = await Promise.all(list);
+  // console.log(list);
 
   list = list.map((arr) => arr.map((data) => data.data.rows).flat());
   const detailURL = (docId) =>
@@ -218,5 +208,47 @@ async function getData(req) {
     }))
   ));
   list = list.map((arr) => arr.map((data) => data.data).flat());
+
+  list = filterQueryText(list, text);
+  // 过滤出要的数据
+
   return list;
+}
+
+function filterQueryText(list, queryText = "") {
+  if (!queryText || queryText == "") return list;
+
+  return list.map((arr) =>
+    arr.filter((item) => {
+      console.log(
+        queryText,
+        new RegExp(queryText, "i").test(
+          item.docClob,
+        ),
+        // item.docClob,
+      );
+
+      if (new RegExp(queryText, "i").test(item.docClob)) {
+        return true;
+      }
+      return false;
+    })
+  );
+}
+
+function getQueryObj(req) {
+  const urlObj = new URL(req.url);
+  const queryArr = [...urlObj.searchParams.entries()];
+  return queryArr.reduce(
+    (acc, [key, val]) => {
+      if (["total", "province", "branch", "count"].includes(key)) {
+        acc[key] = parseInt(val);
+      } else {
+        acc[key] = val;
+      }
+
+      return acc;
+    },
+    {},
+  );
 }
