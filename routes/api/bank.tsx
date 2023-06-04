@@ -190,7 +190,7 @@ async function getData(req) {
     );
 
   list = await Promise.all(list);
-  // console.log(list);
+  console.log(list);
 
   list = list.map((arr) => arr.map((data) => data.data.rows).flat());
   const detailURL = (docId) =>
@@ -220,13 +220,13 @@ function filterQueryText(list, queryText = "") {
 
   return list.map((arr) =>
     arr.filter((item) => {
-      console.log(
-        queryText,
-        new RegExp(queryText, "i").test(
-          item.docClob,
-        ),
-        // item.docClob,
-      );
+      // console.log(
+      //   queryText,
+      //   new RegExp(queryText, "i").test(
+      //     item.docClob,
+      //   ),
+      //   // item.docClob,
+      // );
 
       if (new RegExp(queryText, "i").test(item.docClob)) {
         return true;
