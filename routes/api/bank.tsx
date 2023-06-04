@@ -159,11 +159,16 @@ async function getData(req) {
     {},
   );
   let { text, total, province, branch, count } = query;
-  const pageSize = 18, pageIndex = 1, requestCount = Math.min(count, 500);
+  const pageSize = 18, pageIndex = 1, requestCount = Math.min(count, 1000);
 
   // 貌似链接是会变动的
-  const listURL = (itemId, pageIndex) =>
-    `http://www.cbirc.gov.cn/cn/static/data/DocInfo/SelectDocByItemIdAndChild/data_itemId=${itemId},pageIndex=${pageIndex},pageSize=18.json`;
+  // const listURL = (itemId, pageIndex) =>
+  //   `http://www.cbirc.gov.cn/cn/static/data/DocInfo/SelectDocByItemIdAndChild/data_itemId=${itemId},pageIndex=${pageIndex},pageSize=18.json`;
+
+  // 超过3 页的要用这个查
+  const moreListURL = (itemId, pageIndex) =>
+    `http://www.cbirc.gov.cn/cbircweb/DocInfo/SelectDocByItemIdAndChild?itemId=${itemId}&pageSize=${pageSize}&pageIndex=${pageIndex}`;
+
   // const listURL =
   //   "http://www.cbirc.gov.cn/cbircweb/DocInfo/SelectDocByItemIdAndChild";
 
@@ -178,7 +183,7 @@ async function getData(req) {
               //   return `${listURL(config[key]["itemId"], i + 1)}`;
               // }
               return fetch(
-                `${listURL(config[key]["itemId"], i + 1)}`,
+                `${moreListURL(config[key]["itemId"], i + 1)}`,
               ).then((res) => res.json()).then((data) => {
                 data.data.rows.map((item) => {
                   item.itemId = config[key]["itemId"];
@@ -193,6 +198,7 @@ async function getData(req) {
     );
 
   list = await Promise.all(list);
+
   list = list.map((arr) => arr.map((data) => data.data.rows).flat());
   const detailURL = (docId) =>
     `http://www.cbirc.gov.cn/cn/static/data/DocInfo/SelectByDocId/data_docId=${docId}.json`;
