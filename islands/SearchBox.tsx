@@ -61,11 +61,11 @@ export default function SearchBox(props: any) {
                   class="mx-2 p-2 font-bold text-lg"
                   name={key}
                   onChange={(e) => {
-                    dispatch({ type: key, value: !state[key]["state"] });
+                    dispatch({ type: key, value: state[key]["state"] ? 0 : 1 });
                   }}
                   value={state[key]["state"]}
                   type="checkbox"
-                  checked={true}
+                  checked={state[key]["state"]}
                 />
                 <label htmlFor={key}>
                   {state[key]["label"]}
