@@ -36,7 +36,10 @@ export const handler: Handlers = {
       branch: { ...config["branch"], data: list[2] },
     };
     return new Response(JSON.stringify(ctxData), {
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
     });
   },
 };

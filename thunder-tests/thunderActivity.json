@@ -60,11 +60,11 @@
     "colId": "history",
     "containerId": "",
     "name": "http://localhost:8000/api/bank?text=214234&count=50&total=1&province=1&branch=1",
-    "url": "http://localhost:8000/api/bank?text=214234&count=10&total=0&province=0&branch=1",
+    "url": "https://zhoubin.deno.dev/api/bank?text=214234&count=10&total=0&province=0&branch=1",
     "method": "POST",
     "sortNum": 0,
     "created": "2023-06-03T09:13:25.786Z",
-    "modified": "2023-06-03T09:20:35.671Z",
+    "modified": "2023-06-04T02:42:03.173Z",
     "headers": [],
     "params": [
       {
