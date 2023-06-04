@@ -192,7 +192,9 @@ async function getData(req) {
   list = await Promise.all(list);
   console.log(list);
 
-  list = list.map((arr) => arr.map((data) => data.data.rows).flat());
+  list = list.map((arr) =>
+    arr.filter((data) => data !== null).map((data) => data.data.rows).flat()
+  );
   const detailURL = (docId) =>
     `http://www.cbirc.gov.cn/cn/static/data/DocInfo/SelectByDocId/data_docId=${docId}.json`;
   const pageURL = (docId, itemId) =>
@@ -207,7 +209,9 @@ async function getData(req) {
         .catch(() => null);
     }))
   ));
-  list = list.map((arr) => arr.map((data) => data.data).flat());
+  list = list.map((arr) =>
+    arr.filter((data) => data !== null).map((data) => data.data).flat()
+  );
 
   list = filterQueryText(list, text);
   // 过滤出要的数据
