@@ -159,7 +159,7 @@ async function getData(req) {
     {},
   );
   let { text, total, province, branch, count } = query;
-  const pageSize = 18, pageIndex = 1, requestCount = Math.min(count, 100);
+  const pageSize = 18, pageIndex = 1, requestCount = Math.min(count, 500);
 
   // 貌似链接是会变动的
   const listURL = (itemId, pageIndex) =>

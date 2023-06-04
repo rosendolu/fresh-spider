@@ -47,7 +47,7 @@ export default function SearchBox(props: any) {
           <input
             class="hover:shadow-sm p-1 border font-normal  ml-4"
             type="number"
-            max={200}
+            max={500}
             min={10}
             name="count"
             value={state["count"]}
