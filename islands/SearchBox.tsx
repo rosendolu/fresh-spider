@@ -65,7 +65,7 @@ export default function SearchBox(props: any) {
                   }}
                   value={state[key]["state"]}
                   type="checkbox"
-                  checked={state[key]["state"]}
+                  checked={true}
                 />
                 <label htmlFor={key}>
                   {state[key]["label"]}
