@@ -13,7 +13,7 @@ window.addEventListener("load", () => {
 
   let open = false;
   const openBtn = document.querySelector("#openDetail");
-  openBtn.addEventListener("click", () => {
+  openBtn?.addEventListener("click", () => {
     const detailsElements = document.querySelectorAll("#details");
     for (const el of detailsElements) {
       open = !open;
@@ -26,6 +26,7 @@ function autoToggleDetails() {
   const searchParams = new URLSearchParams(location.href.split("?")[1] || "");
   const queryText = searchParams.get("text") || "";
   const detailsElement = document.querySelectorAll("#details");
+  if (!queryText || queryText == "") return;
   for (const el of detailsElement) {
     el.open = true;
     setTimeout(() => {
